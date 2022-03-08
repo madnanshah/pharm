@@ -13,15 +13,17 @@ return new class extends Migration
      */
     public function up()
     {
-        if(!Schema::hasTable('vendors')){
-            Schema::create('vendors', function (Blueprint $table) {
+        if(!Schema::hasTable('supplier_vendor')){
+            Schema::create('supplier_vendor', function (Blueprint $table) {
                 $table->id();
                 $table->string('second_id')->unique()->nullable();
-                $table->string('name')->required()->nullable(false);
-                $table->string('description')->nullable();
-                $table->string('address')->nullable();
-                $table->string('location')->nullable();
-                $table->string('area')->nullable();
+                $table->unsignedBigInteger('supplier_id');
+                $table->foreign('supplier_id')
+                    ->references('id')->on('suppliers');
+                $table->unsignedBigInteger('vendor_id');
+                $table->foreign('vendor_id')
+                    ->references('id')->on('vendors');
+                $table->boolean('is_active')->default(false);
                 $table->softDeletes();
                 $table->timestamps();
             });
@@ -35,6 +37,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('vendors');
+        Schema::dropIfExists('supplier_vendor');
     }
 };

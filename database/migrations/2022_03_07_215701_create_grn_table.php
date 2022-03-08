@@ -13,15 +13,18 @@ return new class extends Migration
      */
     public function up()
     {
-        if(!Schema::hasTable('vendors')){
-            Schema::create('vendors', function (Blueprint $table) {
+        if(!Schema::hasTable('grn')){
+            Schema::create('grn', function (Blueprint $table) {
                 $table->id();
                 $table->string('second_id')->unique()->nullable();
-                $table->string('name')->required()->nullable(false);
-                $table->string('description')->nullable();
-                $table->string('address')->nullable();
-                $table->string('location')->nullable();
-                $table->string('area')->nullable();
+
+                $table->unsignedBigInteger('po_id');
+                $table->foreign('po_id')
+                    ->references('id')->on('purchase_orders');
+
+                $table->string('invoice_number')->nullable();
+                $table->timestamp('invoice_date')->nullable();
+
                 $table->softDeletes();
                 $table->timestamps();
             });
@@ -35,6 +38,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('vendors');
+        Schema::dropIfExists('grn');
     }
 };

@@ -13,15 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        if(!Schema::hasTable('vendors')){
-            Schema::create('vendors', function (Blueprint $table) {
+        if(!Schema::hasTable('purchase_orders')){
+            Schema::create('purchase_orders', function (Blueprint $table) {
                 $table->id();
                 $table->string('second_id')->unique()->nullable();
-                $table->string('name')->required()->nullable(false);
-                $table->string('description')->nullable();
-                $table->string('address')->nullable();
-                $table->string('location')->nullable();
-                $table->string('area')->nullable();
+
+                $table->unsignedBigInteger('supplier_vendor_id');
+                $table->foreign('supplier_vendor_id')
+                    ->references('id')->on('supplier_vendor');
+
                 $table->softDeletes();
                 $table->timestamps();
             });
@@ -35,6 +35,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('vendors');
+        Schema::dropIfExists('purchase_orders');
     }
 };
