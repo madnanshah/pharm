@@ -5,7 +5,7 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Skydash Admin</title>
+  <title>@yield('title')</title>
   <!-- plugins:css -->
   <link rel="stylesheet" href="vendors/feather/feather.css">
   <link rel="stylesheet" href="vendors/ti-icons/css/themify-icons.css">
@@ -23,9 +23,12 @@
 </head>
 <body>
 <div class="container-scroller">
-    <!-- partial:partials/_navbar.html -->
+    
+    <!-- header Started -->
     @include('layouts.header')
-    <!-- partial -->
+    <!-- header ended -->
+    
+    <!-- Notification, To do list, chat, Skin Settings start -->
     <div class="container-fluid page-body-wrapper">
       <!-- partial:partials/_settings-panel.html -->
       <div class="theme-setting-wrapper">
@@ -44,7 +47,7 @@
             <div class="tiles dark"></div>
             <div class="tiles default"></div>
           </div>
-        </div>
+      </div>
       </div>
       <div id="right-sidebar" class="settings-panel">
         <i class="settings-close ti-close"></i>
@@ -196,23 +199,25 @@
           <!-- chat tab ends -->
         </div>
     </div>
-      <!-- partial -->
-      <!-- partial:partials/_sidebar.html -->
-      @include('layouts.sidebar')
-      <!-- partial -->
-      
-    <!-- content-wrapper ends -->
+    <!-- Notification, To do list, chat, Skin Settings start -->
 
+    <!-- sidebar started -->
+        @include('layouts.sidebar')
+    <!-- sidebar ended -->
+
+    <!-- content started -->
+    <div class="content-wrapper">
+        @yield('content')
+    </div>
+    <!-- content ended -->
+
+    </div>  <!-- start unkown but has impact-->
+    
+    <!-- footer started -->
         @include('layouts.footer')
-        <!-- partial -->
-    </div>
-      <!-- main-panel ends -->
-    </div>
-    <!-- page-body-wrapper ends -->
+    <!-- footer ended -->
+    </div>  <!-- start unkown but has impact-->
 </div>
-  <!-- container-scroller -->
-
-  <!-- plugins:js -->
   <script src="vendors/js/vendor.bundle.base.js"></script>
   <!-- endinject -->
   <!-- Plugin js for this page -->
