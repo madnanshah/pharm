@@ -4,6 +4,16 @@
 
 @section('content')
    <h2 class="mb-4">Products</h2>
+   <div class="container">
+      <div class="row">
+      <div class="col">
+         <h2 class="mb-4">Products</h2>
+      </div>
+      <div class="col">
+         <button class="float-right btn btn-primary" href="#">Add</button>
+      </div>
+      </div>
+   </div>
    <table class="table table-bordered yajra-datatable">
       <thead>
          <tr>

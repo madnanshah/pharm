@@ -7,19 +7,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>@yield('title')</title>
   <!-- plugins:css -->
-  <link rel="stylesheet" href="vendors/feather/feather.css">
-  <link rel="stylesheet" href="vendors/ti-icons/css/themify-icons.css">
-  <link rel="stylesheet" href="vendors/css/vendor.bundle.base.css">
+  <link rel="stylesheet" href="{{ asset('assets/vendors/feather/feather.css') }}">
+  <link rel="stylesheet" href="{{ asset('assets/vendors/ti-icons/css/themify-icons.css') }}">
+  <link rel="stylesheet" href="{{ asset('assets/vendors/css/vendor.bundle.base.css') }}">
   <!-- endinject -->
   <!-- Plugin css for this page -->
-  <link rel="stylesheet" href="vendors/datatables.net-bs4/dataTables.bootstrap4.css">
-  <link rel="stylesheet" href="vendors/ti-icons/css/themify-icons.css">
-  <link rel="stylesheet" type="text/css" href="js/select.dataTables.min.css">
+  <link rel="stylesheet" href="{{ asset('assets/vendors/datatables.net-bs4/dataTables.bootstrap4.css') }}">
+  <link rel="stylesheet" href="{{ asset('assets/vendors/ti-icons/css/themify-icons.css') }}">
+  <link rel="stylesheet" href="{{ asset('assets/js/select.dataTables.min.css') }}">
   <!-- End plugin css for this page -->
+
   <!-- inject:css -->
-  <link rel="stylesheet" href="css/vertical-layout-light/style.css">
+  <link rel="stylesheet" href="{{ asset('assets/css/vertical-layout-light/style.css') }}">
   <!-- endinject -->
-  <link rel="shortcut icon" href="images/favicon.png" />
+
+  <link rel="stylesheet" href="{{ asset('assets/images/favicon.png') }}">
 
   <!-- yajrabox datatables styling started -->
   <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -152,7 +154,7 @@
             </div>
             <ul class="chat-list">
               <li class="list active">
-                <div class="profile"><img src="images/faces/face1.jpg" alt="image"><span class="online"></span></div>
+                <div class="profile"><img src="{{ asset('assets/images/faces/face1.jpg') }}" alt="image"><span class="online"></span></div>
                 <div class="info">
                   <p>Thomas Douglas</p>
                   <p>Available</p>
@@ -160,7 +162,7 @@
                 <small class="text-muted my-auto">19 min</small>
               </li>
               <li class="list">
-                <div class="profile"><img src="images/faces/face2.jpg" alt="image"><span class="offline"></span></div>
+                <div class="profile"><img src="{{ asset('assets/images/faces/face2.jpg') }}" alt="image"><span class="offline"></span></div>
                 <div class="info">
                   <div class="wrapper d-flex">
                     <p>Catherine</p>
@@ -171,7 +173,7 @@
                 <small class="text-muted my-auto">23 min</small>
               </li>
               <li class="list">
-                <div class="profile"><img src="images/faces/face3.jpg" alt="image"><span class="online"></span></div>
+                <div class="profile"><img src="{{ asset('assets/images/faces/face3.jpg') }}" alt="image"><span class="online"></span></div>
                 <div class="info">
                   <p>Daniel Russell</p>
                   <p>Available</p>
@@ -179,7 +181,7 @@
                 <small class="text-muted my-auto">14 min</small>
               </li>
               <li class="list">
-                <div class="profile"><img src="images/faces/face4.jpg" alt="image"><span class="offline"></span></div>
+                <div class="profile"><img src="{{ asset('assets/images/faces/face4.jpg') }}" alt="image"><span class="offline"></span></div>
                 <div class="info">
                   <p>James Richardson</p>
                   <p>Away</p>
@@ -187,7 +189,7 @@
                 <small class="text-muted my-auto">2 min</small>
               </li>
               <li class="list">
-                <div class="profile"><img src="images/faces/face5.jpg" alt="image"><span class="online"></span></div>
+                <div class="profile"><img src="{{ asset('assets/images/faces/face5.jpg') }}" alt="image"><span class="online"></span></div>
                 <div class="info">
                   <p>Madeline Kennedy</p>
                   <p>Available</p>
@@ -195,7 +197,7 @@
                 <small class="text-muted my-auto">5 min</small>
               </li>
               <li class="list">
-                <div class="profile"><img src="images/faces/face6.jpg" alt="image"><span class="online"></span></div>
+                <div class="profile"><img src="{{ asset('assets/images/faces/face6.jpg')}}" alt="image"><span class="online"></span></div>
                 <div class="info">
                   <p>Sarah Graves</p>
                   <p>Available</p>
@@ -226,25 +228,25 @@
     <!-- footer ended -->
     </div>  <!-- start unkown but has impact-->
 </div>
-  <script src="vendors/js/vendor.bundle.base.js"></script>
+  <script src="{{ asset('assets/vendors/js/vendor.bundle.base.js') }}"></script>
   <!-- endinject -->
   <!-- Plugin js for this page -->
-  <script src="vendors/chart.js/Chart.min.js"></script>
-  <script src="vendors/datatables.net/jquery.dataTables.js"></script>
-  <script src="vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
-  <script src="js/dataTables.select.min.js"></script>
+  <script src="{{ asset('assets/vendors/chart.js/Chart.min.js') }}"></script>
+  <script src="{{ asset('assets/vendors/datatables.net/jquery.dataTables.js') }}"></script>
+  <script src="{{ asset('assets/vendors/datatables.net-bs4/dataTables.bootstrap4.js') }}"></script>
+  <script src="{{ asset('assets/js/dataTables.select.min.js') }}"></script>
 
   <!-- End plugin js for this page -->
   <!-- inject:js -->
-  <script src="js/off-canvas.js"></script>
-  <script src="js/hoverable-collapse.js"></script>
-  <script src="js/template.js"></script>
-  <script src="js/settings.js"></script>
-  <script src="js/todolist.js"></script>
+  <script src="{{ asset('assets/js/off-canvas.js') }}"></script>
+  <script src="{{ asset('assets/js/hoverable-collapse.js') }}"></script>
+  <script src="{{ asset('assets/js/template.js') }}"></script>
+  <script src="{{ asset('assets/js/settings.js') }}"></script>
+  <script src="{{ asset('assets/js/todolist.js') }}"></script>
   <!-- endinject -->
   <!-- Custom js for this page-->
-  <script src="js/dashboard.js"></script>
-  <script src="js/Chart.roundedBarCharts.js"></script>
+  <script src="{{ asset('assets/js/dashboard.js') }}"></script>
+  <script src="{{ asset('assets/js/Chart.roundedBarCharts.js') }}"></script>
   <!-- End custom js for this page-->
 </body>
 
