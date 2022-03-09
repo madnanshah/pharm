@@ -3,7 +3,6 @@
 
 
 @section('content')
-   <h2 class="mb-4">Products</h2>
    <div class="container">
       <div class="row">
       <div class="col">
