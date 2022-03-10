@@ -269,7 +269,6 @@
         columns: [
             {data: 'id', name: 'id'},
             {data: 'name', name: 'name'},
-            {data: 'salt', name: 'salt'},
             {data: 'description', name: 'description'},
             {data: 'manufacturer', name: 'manufacturer'},
             {data: 'sub_category', name: 'sub_category'},
