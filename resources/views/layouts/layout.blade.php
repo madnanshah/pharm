@@ -16,11 +16,9 @@
   <link rel="stylesheet" href="{{ asset('assets/vendors/ti-icons/css/themify-icons.css') }}">
   <link rel="stylesheet" href="{{ asset('assets/js/select.dataTables.min.css') }}">
   <!-- End plugin css for this page -->
-
   <!-- inject:css -->
   <link rel="stylesheet" href="{{ asset('assets/css/vertical-layout-light/style.css') }}">
   <!-- endinject -->
-
   <link rel="stylesheet" href="{{ asset('assets/images/favicon.png') }}">
 
   <!-- yajrabox datatables styling started -->
@@ -261,7 +259,6 @@
 <!-- products datatable script started-->
 <script type="text/javascript">
   $(function () {
-    
     var table = $('.yajra-datatable').DataTable({
         processing: true,
         serverSide: true,
@@ -271,15 +268,19 @@
             {data: 'name', name: 'name'},
             {data: 'salt', name: 'salt'},
             {data: 'manufacturer', name: 'manufacturer'},
-            {
-                data: 'action', 
-                name: 'action', 
-                orderable: true, 
-                searchable: true
-            },
+            {data: 'action', name: 'action', orderable: false, searchable: false},
         ]
     });
-    
+  });
+
+  $('.add').on('click', function () 
+  {
+    var id = $(this).attr("id"); //get the id from the line
+ 
+    $('#loadForm').load(domain+'/item/'+id)//load a view into a modal
+
+    $('#modalEditEntry').modal('show'); //show the modal
+
   });
 </script>
 <!-- products datatable script ended-->

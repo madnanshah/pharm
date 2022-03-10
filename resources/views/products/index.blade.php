@@ -9,7 +9,7 @@
          <h2 class="mb-4">Products</h2>
       </div>
       <div class="col">
-         <button class="float-right btn btn-primary" href="#">Add</button>
+         <button class="float-right btn btn-primary" onclick="location.href='{{ url('products/add') }}'">Add</button>
       </div>
       </div>
    </div>
