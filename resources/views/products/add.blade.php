@@ -65,20 +65,21 @@
             </div>
             <div class="col">
                <label for="" class="form-label">Manufacturer</label>
-               <select name="manufacturer" class="form-control" aria-label=".form-select-lg example">
-                  <option value="Manufacturer 1">Manufacturer 1</option>
-                  <option value="Manufacturer 2">Manufacturer 2</option>
-                  <option value="Manufacturer 3">Manufacturer 3</option>
-                  <option value="Manufacturer 4">Manufacturer 4</option>
+               <select name="manufacturer_id" class="form-control" aria-label=".form-select-lg example">
+                  <option value=null></option>
+                  @foreach ($manufacturers as $manufacturer)
+                     <option value="{{ $manufacturer->id }}">{{ $manufacturer->name }}</option>
+                  @endforeach
                </select>
             </div>
          </div>
          <div class="row">
             <div class="col">
-               <label for="" class="form-label">Supplier</label>
-               <select name="supplier_id" class="form-control" aria-label=".form-select-lg example">
-                  @foreach ($suppliers as $supplier)
-                     <option value="{{ $supplier->id }}">{{ $supplier->name }}</option>
+               <label for="" class="form-label">Category</label>
+               <select name="sub_category_id" class="form-control" aria-label=".form-select-lg example">
+                  <option value=null></option>
+                  @foreach ($categories as $category)
+                     <option value="{{ $category->sub_category_id }}">{{ $category->category_name }} -> {{ $category->sub_category_name }}</option>
                   @endforeach
                </select>
             </div>

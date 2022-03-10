@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Auth\Middleware\Authenticate;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,19 +15,24 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth/login');
 });
 
 Auth::routes();
 
 Route::get('home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('dashboard', 'App\Http\Controllers\DashboardController@dashboard');
 
-Route::get('products', 'App\Http\Controllers\ProductController@index');
-Route::get('products/add', 'App\Http\Controllers\ProductController@add')->name('products.add');
-Route::post('products/store', 'App\Http\Controllers\ProductController@store');
-Route::get('products/all', 'App\Http\Controllers\ProductController@all')->name('products.all');
 
-Route::get('vendorProducts', 'App\Http\Controllers\VendorProductController@index');
-Route::get('vendorProducts/all', 'App\Http\Controllers\VendorProductController@all')->name('vendorProducts.all');
+Route::group(['middleware' => 'auth'], function () {
+    
+    Route::get('dashboard', 'App\Http\Controllers\DashboardController@dashboard');
+
+    Route::get('products', 'App\Http\Controllers\ProductController@index');
+    Route::get('products/add', 'App\Http\Controllers\ProductController@add')->name('products.add');
+    Route::post('products/store', 'App\Http\Controllers\ProductController@store');
+    Route::get('products/all', 'App\Http\Controllers\ProductController@all')->name('products.all');
+
+    Route::get('vendorProducts', 'App\Http\Controllers\VendorProductController@index');
+    Route::get('vendorProducts/all', 'App\Http\Controllers\VendorProductController@all')->name('vendorProducts.all');
+});

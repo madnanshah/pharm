@@ -5,8 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product;
-use App\Services\SupplierService;
 use App\Services\ProductService;
+use App\Services\SubCategoryService;
+use App\Services\ManufacturerService;
 
 class ProductController extends Controller
 {
@@ -16,18 +17,29 @@ class ProductController extends Controller
     private ProductService $service;
 
     /**
-     * @var SupplierService
+     * @var SubCategoryService
      */
-    private SupplierService $supplierService;
+    private SubCategoryService $subCategoryService;
 
     /**
-     * @param SupplierService $supplierService
-     * @param ProductService $service
+     * @var ManufacturerService
      */
-    public function __construct(SupplierService $supplierService, ProductService $service)
+    private ManufacturerService $manufacturerService;
+
+    /**
+     * @param SubCategoryService $subCategoryService
+     * @param ProductService $service
+     * @param ManufacturerService $manufacturerService
+     */
+    public function __construct(
+        ProductService $service,
+        SubCategoryService $subCategoryService, 
+        ManufacturerService $manufacturerService
+    )
     {
         $this->service = $service;
-        $this->supplierService = $supplierService;
+        $this->subCategoryService = $subCategoryService;
+        $this->manufacturerService = $manufacturerService;
     }
 
     public function index(){
@@ -42,14 +54,18 @@ class ProductController extends Controller
     }
 
     public function add(){
-        $suppliers = $this->supplierService->getSuppliers();
-        return view('products.add', ['suppliers'=>$suppliers]);
+        return view(
+            'products.add',
+            [
+                'categories' => $this->subCategoryService->getAllWithCategories(), 
+                'manufacturers' => $this->manufacturerService->getAll()
+            ]
+        );
     }
 
     public function store(Request $request)
     {
         return redirect()->back()->withInput([
-            'suppliers' => $this->supplierService->getSuppliers(),
             'status' => $this->service->store($request->all())
         ]);
     }

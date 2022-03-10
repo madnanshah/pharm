@@ -28,6 +28,9 @@
   <link href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css" rel="stylesheet">
   <!-- yajrabox datatables styling ends -->
   
+  <!-- app main js script starts -->
+  <script src="{{ asset('js/app.js') }}" defer></script>
+  <!-- app main js script starts -->
 </head>
 <body>
 <div class="container-scroller">

@@ -18,7 +18,9 @@ Class ProductRepository
         $product->name = $data['name'];
         $product->salt = $data['salt'];
         $product->description = $data['description'];
-        $product->manufacturer = $data['manufacturer'];
+        $product->grammage = $data['grammage'];
+        $product->sub_category_id = $data['sub_category_id'];
+        $product->manufacturer_id = $data['manufacturer_id'];
         return $product->save();
     }
 }
