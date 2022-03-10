@@ -6,7 +6,7 @@
    <div class="container">
       <div class="row">
       <div class="col">
-         <h2 class="mb-4">Products</h2>
+         <h2 class="mb-4">Master Products</h2>
       </div>
       <div class="col">
          <button class="float-right btn btn-primary" onclick="location.href='{{ url('products/add') }}'">Add</button>

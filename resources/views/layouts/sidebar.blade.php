@@ -9,7 +9,13 @@
       <li class="nav-item">
         <a class="nav-link" href="{{ url('products') }}">
           <i class="icon-grid menu-icon"></i>
-          <span class="menu-title">Products</span>
+          <span class="menu-title">Master Products</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{{ url('vendorProducts') }}">
+          <i class="icon-grid menu-icon"></i>
+          <span class="menu-title">Vendor Products</span>
         </a>
       </li>
       <li class="nav-item">

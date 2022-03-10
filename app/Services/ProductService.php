@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Repositories\ProductRepository;
 use App\Repositories\VendorProductRepository;
 use Illuminate\Support\Facades\DB;
+use DataTables;
 
 Class ProductService
 {
@@ -29,11 +30,20 @@ Class ProductService
         $this->vendorProductRepository = $vendorProductRepository;
     }
 
+    public function all(){
+        return DataTables::of(
+            $this->repo->all()
+        )->addIndexColumn()
+        ->addColumn(
+            'action',
+            function($row){
+                return '<a name="edit" id="'.$row->id.'" href="javascript:void(0)" class="edit btn btn-success btn-sm">Edit</a> <a name="delete" id="'.$row->id.'"  href="javascript:void(0)" class="delete btn btn-danger btn-sm">Delete</a>';
+            }
+        )->rawColumns(['action'])->make(true);
+    }
+
     public function store($data)
     {
-        DB::transaction(function () use ($data){
-            $product = $this->repo->store($data);
-            return $this->vendorProductRepository->store($product,$data);
-        });
+        return $this->repo->store($data);
     }
 }
