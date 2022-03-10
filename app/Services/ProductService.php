@@ -3,8 +3,8 @@
 namespace App\Services;
 
 use App\Repositories\ProductRepository;
-use App\Repositories\VendorProductRepository;
 use Illuminate\Support\Facades\DB;
+
 use DataTables;
 
 Class ProductService
@@ -15,24 +15,16 @@ Class ProductService
     private ProductRepository $repo;
 
     /**
-     * @var VendorProductRepository
-     */
-    private VendorProductRepository $vendorProductRepository;
-
-    /**
      * @param ProductRepository $repo
-     * @param VendorProductRepository $vendorProductRepository
      */
-
-    public function __construct(ProductRepository $repo, VendorProductRepository $vendorProductRepository)
+    public function __construct(ProductRepository $repo)
     {
         $this->repo = $repo;
-        $this->vendorProductRepository = $vendorProductRepository;
     }
 
-    public function all(){
+    public function getAll(){
         return DataTables::of(
-            $this->repo->all()
+            $this->repo->getAll()
         )->addIndexColumn()
         ->addColumn(
             'action',
@@ -44,6 +36,16 @@ Class ProductService
 
     public function store($data)
     {
-        return $this->repo->store($data);
+        return $this->repo->store(
+            $this->setDescriptionAndTypeId($data)
+        );
+    }
+
+    public function setDescriptionAndTypeId($data)
+    {
+        $type = explode('-', $data['type']);
+        $data['type_id'] = $type[0];
+        $data['description'] = $type[1].' '.$data['name'].' '.$data['grammage'].' ('.$data['salt'].') - '.$data['description'];
+        return $data;
     }
 }

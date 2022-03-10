@@ -8,6 +8,8 @@ use App\Models\Product;
 use App\Services\ProductService;
 use App\Services\SubCategoryService;
 use App\Services\ManufacturerService;
+use App\Services\TypeService;
+use App\Validations\ProductValidation;
 
 class ProductController extends Controller
 {
@@ -27,29 +29,45 @@ class ProductController extends Controller
     private ManufacturerService $manufacturerService;
 
     /**
-     * @param SubCategoryService $subCategoryService
+     * @var TypeService
+     */
+    private TypeService $typeService;
+
+    /**
+     * @var ProductValidation
+     */
+    private ProductValidation $validation;
+
+    /**
      * @param ProductService $service
+     * @param SubCategoryService $subCategoryService
      * @param ManufacturerService $manufacturerService
+     * @param TypeService $typeService
+     * @param ProductValidation $validation
      */
     public function __construct(
         ProductService $service,
         SubCategoryService $subCategoryService, 
-        ManufacturerService $manufacturerService
+        ManufacturerService $manufacturerService,
+        TypeService $typeService,
+        ProductValidation $validation
     )
     {
         $this->service = $service;
         $this->subCategoryService = $subCategoryService;
         $this->manufacturerService = $manufacturerService;
+        $this->typeService = $typeService;
+        $this->validation = $validation;
     }
 
     public function index(){
         return view('products.index');
     }
 
-    public function all(Request $request)
+    public function getAll(Request $request)
     {
         if ($request->ajax()) {
-            return $this->service->all();
+            return $this->service->getAll();
         }
     }
 
@@ -58,15 +76,17 @@ class ProductController extends Controller
             'products.add',
             [
                 'categories' => $this->subCategoryService->getAllWithCategories(), 
-                'manufacturers' => $this->manufacturerService->getAll()
+                'manufacturers' => $this->manufacturerService->getAll(),
+                'types' => $this->typeService->getAll(),
             ]
         );
     }
 
     public function store(Request $request)
     {
-        return redirect()->back()->withInput([
-            'status' => $this->service->store($request->all())
-        ]);
+        $this->validation->store($request);
+        return redirect()->back()->with(
+            'status', $this->service->store($request->all())
+        );
     }
 }

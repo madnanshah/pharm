@@ -18,8 +18,9 @@
          <tr>
             <th>ID</th>
             <th>Name</th>
-            <th>Salt</th>
+            <th>Description</th>
             <th>Menufacturer</th>
+            <th>Sub category</th>
             <th>Actions</th>
          </tr>
       </thead>

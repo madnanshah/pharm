@@ -31,7 +31,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('products', 'App\Http\Controllers\ProductController@index');
     Route::get('products/add', 'App\Http\Controllers\ProductController@add')->name('products.add');
     Route::post('products/store', 'App\Http\Controllers\ProductController@store');
-    Route::get('products/all', 'App\Http\Controllers\ProductController@all')->name('products.all');
+    Route::get('products/all', 'App\Http\Controllers\ProductController@getAll')->name('products.all');
 
     Route::get('vendorProducts', 'App\Http\Controllers\VendorProductController@index');
     Route::get('vendorProducts/all', 'App\Http\Controllers\VendorProductController@all')->name('vendorProducts.all');
