@@ -7,16 +7,26 @@
         </a>
       </li>
       <li class="nav-item">
+        <a class="nav-link" href="{{ url('products') }}">
+          <i class="icon-grid menu-icon"></i>
+          <span class="menu-title">Master Products</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{{ url('vendorProducts') }}">
+          <i class="icon-grid menu-icon"></i>
+          <span class="menu-title">Vendor Products</span>
+        </a>
+      </li>
+      <li class="nav-item">
         <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
           <i class="icon-layout menu-icon"></i>
-          <span class="menu-title">Products</span>
+          <span class="menu-title">Orders</span>
           <i class="menu-arrow"></i>
         </a>
         <div class="collapse" id="ui-basic">
           <ul class="nav flex-column sub-menu">
-            <li class="nav-item"> <a class="nav-link" href="{{ url('products') }}">All</a></li>
-            <li class="nav-item"> <a class="nav-link" href="{{ url('products') }}">Add</a></li>
-            <li class="nav-item"> <a class="nav-link" href="{{ url('products') }}">Delete</a></li>
+            <li class="nav-item"> <a class="nav-link" href="{{ url('#') }}">All</a></li>
           </ul>
         </div>
       </li>
