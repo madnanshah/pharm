@@ -89,4 +89,9 @@ class ProductController extends Controller
             'status', $this->service->store($request->all())
         );
     }
+
+    public function edit($id)
+    {
+        return view('products.edit');        
+    }
 }

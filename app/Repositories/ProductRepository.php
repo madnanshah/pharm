@@ -7,6 +7,10 @@ use App\Models\Product;
 
 Class ProductRepository
 {
+    public function find($id){
+        return Product::find($id);
+    }
+
     public function getAll(){
         return Product::select(
             'products.id',
@@ -17,11 +21,16 @@ Class ProductRepository
             'manufacturers.name as manufacturer',
             'products.description',
             'sub_categories.name as sub_category',
-        )->join('product_types', 'product_types.id', '=', 'products.type_id')
-        ->join('manufacturers', 'manufacturers.id', '=', 'products.manufacturer_id')
-        ->join('sub_categories', 'sub_categories.id', '=', 'products.sub_category_id')
-        ->join('product_categories', 'product_categories.id', '=', 'sub_categories.product_category_id')
-        ->get();
+            'vendor_products.id as vendor_product_id',
+            'vendor_products.vendor_id',
+        )->leftJoin('product_types', 'product_types.id', '=', 'products.type_id')
+        ->leftJoin('manufacturers', 'manufacturers.id', '=', 'products.manufacturer_id')
+        ->leftJoin('sub_categories', 'sub_categories.id', '=', 'products.sub_category_id')
+        ->leftJoin('product_categories', 'product_categories.id', '=', 'sub_categories.product_category_id')
+        ->leftJoin('vendor_products', function ($join) {
+            $join->on('vendor_products.product_id', '=', 'products.id')
+            ->where('vendor_products.vendor_id',auth()->user()->vendor_id);
+        });
     }
 
     public function store($data)

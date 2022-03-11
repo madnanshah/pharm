@@ -3,7 +3,6 @@
 namespace App\Services;
 
 use App\Repositories\ProductRepository;
-use Illuminate\Support\Facades\DB;
 
 use DataTables;
 
@@ -22,14 +21,21 @@ Class ProductService
         $this->repo = $repo;
     }
 
+    public function find($id){
+        return $this->repo->find($id);
+    }
+
     public function getAll(){
         return DataTables::of(
-            $this->repo->getAll()
+            $this->repo->getAll()->get()
         )->addIndexColumn()
         ->addColumn(
             'action',
             function($row){
-                return '<a name="edit" id="'.$row->id.'" href="javascript:void(0)" class="edit btn btn-success btn-sm">Edit</a> <a name="delete" id="'.$row->id.'"  href="javascript:void(0)" class="delete btn btn-danger btn-sm">Delete</a>';
+                return $row->vendor_product_id && $row->vendor_id == auth()->user()->vendor_id ?
+                    '<a name="edit" id="'.$row->id.'" href="products/edit/'.$row->id.'" class="edit btn btn-success btn-sm">Edit</a>' :
+                        '<a name="edit" id="'.$row->id.'" href="products/edit/'.$row->id.'" class="edit btn btn-success btn-sm">Edit</a>
+                        <a name="create_vendor_product" id="'.$row->id.'"  href="/vendor_products/add/'.$row->id.'" title="Create Vendor Product" class="delete btn btn-warning btn-sm">Create VP</a>';
             }
         )->rawColumns(['action'])->make(true);
     }
