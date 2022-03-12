@@ -275,16 +275,27 @@
             {data: 'action', name: 'action', orderable: false, searchable: false},
         ]
     });
-  });
 
-  $('.add').on('click', function () 
-  {
-    var id = $(this).attr("id"); //get the id from the line
- 
-    $('#loadForm').load(domain+'/item/'+id)//load a view into a modal
-
-    $('#modalEditEntry').modal('show'); //show the modal
-
+    // vendor product datatable
+    console.log('0');
+    var table = $('.vendor_products_datatable').DataTable({
+        processing: true,
+        serverSide: true,
+        ajax: "{{ route('vendor_products.all') }}",
+        columns: [
+            {data: 'id', name: 'id'},
+            {data: 'name', name: 'name'},
+            {data: 'description', name: 'description'},
+            {data: 'manufacturer', name: 'manufacturer'},
+            {data: 'sub_category', name: 'sub_category'},
+            {data: 'is_active', name: 'is_active'},
+            {data: 'is_short', name: 'is_short'},
+            {data: 'is_discounted', name: 'is_discounted'},
+            {data: 'is_controlled', name: 'is_controlled'},
+            {data: 'supplier', name: 'supplier'},
+            {data: 'action', name: 'action', orderable: false, searchable: false}
+        ]
+    });
   });
 </script>
 <!-- products datatable script ended-->

@@ -50,8 +50,15 @@ class VendorProductController extends Controller
         $this->supplierService = $supplierService;
     }
 
-    public function index(){
-        return view('products.index');
+    public function index()
+    {
+        return view('vendor_products.index');
+    }
+
+    public function getAll(Request $request){
+        if ($request->ajax()) {
+            return $this->service->getAll();
+        }
     }
 
     public function add($product_id){

@@ -13,7 +13,7 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{{ url('vendorProducts') }}">
+        <a class="nav-link" href="{{ url('vendor_products') }}">
           <i class="icon-grid menu-icon"></i>
           <span class="menu-title">Vendor Products</span>
         </a>

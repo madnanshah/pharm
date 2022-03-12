@@ -29,12 +29,13 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('dashboard', 'App\Http\Controllers\DashboardController@dashboard');
 
     Route::get('products', 'App\Http\Controllers\ProductController@index');
+    Route::get('products/all', 'App\Http\Controllers\ProductController@getAll')->name('products.all');
     Route::get('products/add', 'App\Http\Controllers\ProductController@add')->name('products.add');
     Route::post('products/store', 'App\Http\Controllers\ProductController@store');
     Route::get('products/edit/{id}', 'App\Http\Controllers\ProductController@edit');
-    Route::get('products/all', 'App\Http\Controllers\ProductController@getAll')->name('products.all');
 
     Route::get('vendor_products', 'App\Http\Controllers\VendorProductController@index');
+    Route::get('vendor_products/all', 'App\Http\Controllers\VendorProductController@getAll')->name('vendor_products.all');
     Route::get('vendor_products/add/{product_id}', 'App\Http\Controllers\VendorProductController@add')->name('vendor_products.add');
     Route::post('vendor_products/store', 'App\Http\Controllers\VendorProductController@store');
 });

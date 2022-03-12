@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Repositories\VendorProductRepository;
 use App\Repositories\SupplierRepository;
 use Illuminate\Support\Facades\DB;
+use DataTables;
 
 Class VendorProductService
 {
@@ -23,10 +24,26 @@ Class VendorProductService
      * @param SupplierRepository $supplierRepo
      */
 
-    public function __construct(VendorProductRepository $repo, SupplierRepository $supplierRepo)
+    public function __construct(
+        VendorProductRepository $repo,
+        SupplierRepository $supplierRepo
+    )
     {
         $this->repo = $repo;
         $this->supplierRepo = $supplierRepo;
+    }
+
+    public function getAll()
+    {
+        return DataTables::of(
+            $this->repo->getAll()
+        )->addIndexColumn()
+        ->addColumn(
+            'action',
+            function($row){
+                return '<a name="edit" id="'.$row->id.'" href="products/edit/'.$row->id.'" class="edit btn btn-success btn-sm">Edit</a>';
+            }
+        )->rawColumns(['action'])->make(true);
     }
 
     public function store($data)
